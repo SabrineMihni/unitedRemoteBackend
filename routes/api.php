@@ -15,16 +15,17 @@ use Illuminate\Http\Request;
 
 
 
-Route::namespace('API')->prefix('v10')->group([], function(){
+Route::namespace('API')->prefix('v10')->group( function(){
 
     Route::post('login', 'UserController@login');
     Route::post('register', 'UserController@register');
 });
 
 
-Route::namespace('API/V10')->prefix('v10')->group(['middleware' => 'auth:api'], function(){
+Route::prefix('v10')->namespace('API\V10')->middleware(['auth', 'api'])->group( function(){
     // Controllers Within The "App\Http\Controllers\API" Namespace
-    Route::post('details', 'UserController@details');
+
+    Route::get('trending-languages', 'GithubReposController@getLanguages');
 
 });
 
