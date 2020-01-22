@@ -16,6 +16,7 @@ class GithubReposController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->githubService =  new GithubRepoService();
     }
 
